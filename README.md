@@ -8,6 +8,7 @@
 - Example in ./example-app now loads data from mock server
 - Set "sort-ascent"/"sort-descent" class on `<th>`'s directly (rather than on the `<span>` inside them)
 - Removed `isGlobalSearchActivated` flag
+- Added subHeader functionality
 
 ### Events
 
@@ -83,6 +84,25 @@ Most of the API method simply change table controller or scope variables and the
 local/scope variables. The `Column.js` simply wraps (and add some required properties) to your column configuration to expose it to the table child directives through the scope.
 
 So, at the end you don't even have to use the provided directives and build yours if you want a special behavior.
+
+### How to implement subHeader functionality
+
+* Features supported by subHeader
+    * subHeaderTemplateUrl
+    * formatFunction
+    * formatParameter
+    * cellClass
+
+```js
+//provide subHeader data to scope variable and bind it to smartTable directive
+scope.subHeaders = [{'foo':{'label':'subHeader1','subHeaderCellClass':'subHeader1','formatFunction':'uppercase'},'bar':{'label':'subHeader1','subHeaderCellClass':'subHeader2','formatFunction':'uppercase'}},{'foo':{'label':'subHeader1','subHeaderCellClass':'subHeader1','formatFunction':'uppercase'},'bar':{'label':'SUBHEADER','subHeaderCellClass':'subHeader2','formatFunction':'lowercase'}}];
+```
+
+```html
+// bind subHeaders data with sub-headers attribute of smart-table directive
+
+<smart-table rows="dataCollection" columns="myColumns" sub-headers="subHeaders"></smart-table>
+```
 
 ###The build process
 
