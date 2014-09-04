@@ -54,6 +54,9 @@ angular.module("partials/smartTable.html", []).run(["$templateCache", function($
     "    <tr class=\"smart-table-header-row\">\n" +
     "        <th ng-repeat=\"column in columns\" ng-include=\"column.headerTemplateUrl\" scope=\"col\" class=\"smart-table-header-cell {{column.headerClass}}\" ng-class=\"{'sort-ascent':column.reverse==false, 'sort-descent':column.reverse==true}\"></th>\n" +
     "    </tr>\n" +
+    "    <tr class=\"smart-table-subheader-row sub-header-row-{{$index}}\" ng-repeat=\"subHeaderRow in subHeaders\">\n" +
+    "        <td ng-repeat=\"column in columns\" scope=\"column\" class=\"smart-table-subheader-cell {{column.subHeaderCellClass}}\"></td>\n" +
+    "    </tr>\n" +
     "    </thead>\n" +
     "    <tbody>\n" +
     "    <tr ng-repeat=\"dataRow in displayedCollection\" ng-class=\"{selected:dataRow.isSelected}\"\n" +

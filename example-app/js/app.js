@@ -10,7 +10,7 @@ angular
     .then(function (res) {
 
         scope.rowCollection = res.data;
-
+        scope.subHeaders = [{'foo':{'label':'subHeader1','subHeaderCellClass':'subHeader1','formatFunction':'uppercase'},'bar':{'label':'subHeader1','subHeaderCellClass':'subHeader2','formatFunction':'uppercase'}},{'foo':{'label':'subHeader1','subHeaderCellClass':'subHeader1','formatFunction':'uppercase'},'bar':{'label':'SUBHEADER','subHeaderCellClass':'subHeader2','formatFunction':'lowercase'}}];
         scope.columnCollection = Object.keys(scope.rowCollection[0]).map(function (key) {
             return {
                 label: key,
@@ -22,33 +22,5 @@ angular
         throw new Error (err);
     });
 
-    angular.extend(scope, {
-
-        search: function (e, column) {
-
-            console.log(e, column);
-
-        },
-
-        sort: function (e, column) {
-
-            var field = column.map,
-                order = column.reverse ? 'ASC' : 'DESC';
-            
-            console.log(field, order);
-        },
-
-        globalConfig: {
-            isPaginationEnabled: false,
-            isGlobalSearchActivated: true,
-            serverSideFilter: true,
-            serverSideSort: true,
-            selectionMode: 'single'
-        }
-
-    });
-
-    scope.$on('search', scope.search);
-    scope.$on('sortColumn', scope.sort);
     
 }]);
